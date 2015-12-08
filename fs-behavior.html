@@ -15,9 +15,8 @@
         _base: {
           type: String,
           value: function() {
-            if (~location.origin.indexOf('familysearch.org')) {
-              return location.origin;
-            }
+            var isDefault = (~location.origin.indexOf('familysearch.org') || ~location.origin.indexOf('localhost'));
+            if (isDefault) return location.origin;
             return 'https://beta.familysearch.org';
           }
         },
@@ -35,5 +34,4 @@
       }
     };
   })(window);
-
 </script>
