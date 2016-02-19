@@ -31,6 +31,12 @@
             }
           }
         },
+        _lang: {
+          type: String,
+          value: function() {
+            return FS && FS.simpleLocale ? FS.simpleLocale() : ''
+          }
+        }
       }
     };
   })(window);
