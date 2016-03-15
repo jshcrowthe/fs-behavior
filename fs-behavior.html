@@ -34,7 +34,12 @@
         _lang: {
           type: String,
           value: function() {
-            return FS && FS.simpleLocale ? FS.simpleLocale() : ''
+            if (window.FS && window.FS.simpleLocale) return FS.simpleLocale();
+            var lang = navigator.language;
+            var matches = lang.match(/^\w{2}/);
+            if (lang && matches) {
+              return matches[0];
+            }
           }
         }
       }
