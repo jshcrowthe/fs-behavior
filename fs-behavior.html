@@ -10,6 +10,22 @@
       }
       return null;
     }
+
+    /**
+     * Gets the preferred language from the browser.
+     */
+    var getNavigatorLanguage = function() {
+      var navLang = navigator.language;
+
+      /* navigator.languages[0] is better, if it exists, because navigator.language is set
+       * to the OS language in Chrome. */
+      if (navigator.languages && navigator.languages.length > 0) {
+        navLang = navigator.languages[0];
+      }
+
+      return navLang;
+    };
+
     window.FSBehavior = {
       properties: {
         _base: {
@@ -35,7 +51,7 @@
           type: String,
           value: function() {
             if (window.FS && window.FS.simpleLocale) return FS.simpleLocale();
-            var lang = navigator.language;
+            var lang = getNavigatorLanguage();
             var matches = lang.match(/^\w{2}/);
             if (lang && matches) {
               return matches[0];
